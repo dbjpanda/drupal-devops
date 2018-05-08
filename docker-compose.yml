@@ -1,8 +1,8 @@
 version: '2'
+
 services:
-  drupaldb:
-    image: "mariadb"
-    container_name: drupaldb
+  mariadb:
+    container_name: mariadb
     volumes:
       - ${DB_PATH}:/docker-entrypoint-initdb.d/dump.sql
     environment:
@@ -12,6 +12,17 @@ services:
     networks:
       - drupal
     restart: always
+    
+  nginx:
+  
+  php: 
+    
+    
+    
+    
+    
+    
+    
   drupal:
     # Pull directly from Dockerhub
     image: "ankitjain28/php-nginx-composer:latest"
