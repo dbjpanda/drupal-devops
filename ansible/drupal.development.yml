@@ -1,0 +1,11 @@
+---
+
+- name: Development to "remote" host
+  hosts: develop
+  become: true
+  roles:
+    - git-pull
+    - env
+    - restart
+    - composer
+    - drupal

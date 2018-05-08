@@ -1,0 +1,8 @@
+[digitalocean]
+139.59.67.196 ansible_user=root
+
+[local]
+localhost
+
+[develop:children]
+digitalocean

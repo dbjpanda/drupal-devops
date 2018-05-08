@@ -1,0 +1,14 @@
+---
+
+- name: Configuration to "remote" host
+  hosts: develop
+  become: true
+  roles:
+    - backup
+    - docker-install
+    - git-clone
+    - git-hooks
+    - env
+    - docker-build
+    - composer-prod
+    - drupal

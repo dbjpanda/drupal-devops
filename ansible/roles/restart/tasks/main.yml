@@ -1,0 +1,4 @@
+---
+
+- name: Restarting Drupal Container
+  command: docker restart drupal

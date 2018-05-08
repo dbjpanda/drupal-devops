@@ -1,0 +1,14 @@
+---
+
+- name: Staging to "remote" host
+  hosts: develop
+  become: true
+  roles:
+    - backup
+    - docker-install
+    - git-stage
+    - git-hooks
+    - env
+    - restart
+    - composer
+    - drupal

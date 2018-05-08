@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+
+set -o errexit
+
+echo "Running Pre-Commit Git hooks"
+
+# Fetching Env Vars
+MYSQL_USER=$(grep MYSQL_USER .env | xargs)
+MYSQL_USER=${MYSQL_USER#*=}
+
+MYSQL_PASSWORD=$(grep MYSQL_PASSWORD .env | xargs)
+MYSQL_PASSWORD=${MYSQL_PASSWORD#*=}
+
+MYSQL_DATABASE=$(grep MYSQL_DATABASE .env | xargs)
+MYSQL_DATABASE=${MYSQL_DATABASE#*=}
+
+DB_PATH=$(grep DB_PATH .env | xargs)
+DB_PATH=${DB_PATH#*=}
+
+SAVE_PREVIOUS_DB_DUMP=$(grep SAVE_PREVIOUS_DB_DUMP .env | xargs)
+SAVE_PREVIOUS_DB_DUMP=${SAVE_PREVIOUS_DB_DUMP#*=}
+
+EXPORT_CONFIG_ON_COMMIT=$(grep EXPORT_CONFIG_ON_COMMIT .env | xargs)
+EXPORT_CONFIG_ON_COMMIT=${EXPORT_CONFIG_ON_COMMIT#*=}
+
+EXPORT_DB_DUMP_ON_COMMIT=$(grep EXPORT_DB_DUMP_ON_COMMIT .env | xargs)
+EXPORT_DB_DUMP_ON_COMMIT=${EXPORT_DB_DUMP_ON_COMMIT#*=}
+
+CURRENT_DATE_TIME="`date +%Y-%m-%d-%H-%M-%S`"
+NEW_FILE="${DB_PATH%*.sql}"-$CURRENT_DATE_TIME.sql
+
+
+# Export the Configuration
+if [ $EXPORT_CONFIG_ON_COMMIT = true ]; then
+    echo "Exporting the Configuration"
+    docker exec drupal composer drupal config:export
+fi
+
+# Save previous dump
+if [ $SAVE_PREVIOUS_DB_DUMP = true ]; then
+    echo "Saving Previous Dump as "$NEW_FILE
+    mv $DB_PATH $NEW_FILE
+fi
+
+# Export the Database dump
+if [ $EXPORT_DB_DUMP_ON_COMMIT = true ]; then
+    echo "Exporting Database Dump"
+    docker exec drupaldb mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD $MYSQL_DATABASE  > $DB_PATH
+fi

@@ -1,0 +1,9 @@
+[digitalocean]
+example.com ansible_user=root
+
+[aws]
+example.me ansible_user=ubuntu
+
+[production:children]
+digitalocean
+aws

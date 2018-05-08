@@ -1,0 +1,11 @@
+---
+
+- name: Stashing local changes
+  command: git stash
+  args:
+    chdir: "{{project_dir}}/{{project_folder_name}}"
+
+- name: Pulling lastest changes
+  command: git pull origin HEAD
+  args:
+    chdir: "{{project_dir}}/{{project_folder_name}}"

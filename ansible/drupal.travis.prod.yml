@@ -1,0 +1,9 @@
+---
+
+- name: Configuration to "remote" host
+  hosts: travis
+  become: true
+  roles:
+    - docker-build
+    - composer
+    - drupal
