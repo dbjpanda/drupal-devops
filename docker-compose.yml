@@ -3,6 +3,7 @@ version: '2'
 services:
   mariadb:
     container_name: mariadb
+    build: ./docker/mariadb
     volumes:
       - ${DB_PATH}:/docker-entrypoint-initdb.d/dump.sql
     environment:
@@ -14,9 +15,16 @@ services:
     restart: always
     
   nginx:
+    container_name: nginx
+    build: ./docker/nginx
+    # Pull directly from Dockerhub
+    # image: "your_name/nginx"
   
-  php: 
-    
+  php:
+    # Pull directly from Dockerhub
+    # image: "your_name/php"
+    container_name: php
+    build: ./docker/php
     
     
     
