@@ -56,23 +56,6 @@
   tags:
     - docker
 
-# sudo groupadd docker
-# - name: Creating "docker" group
-#   group:
-#     name: "{{ docker_group }}"
-#     state: present
-#   tags:
-#     - docker
-
-# # sudo usermod -aG docker ubuntu
-# - name: Adding remote "ubuntu" user to "docker" group
-#   user:
-#     name: "{{ remote_user }}"
-#     group: "{{ docker_group }}"
-#     append: yes
-#   tags:
-#     - docker
-
 # sudo apt-get install docker-compose
 - name: Installing docker-compose
   apt:
@@ -98,9 +81,10 @@
   tags:
     - docker
 
+# sudo gem install docker-sync
 - name: Installing docker-sync
-  gem:
-    name: docker-sync
-    state: present
+  command: sudo gem install {{item}}
+  with_items:
+    - docker-sync
   tags:
     - docker

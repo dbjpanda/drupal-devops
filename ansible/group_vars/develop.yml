@@ -3,7 +3,7 @@
 #// user account used to ssh the hosts
 remote_user: ubuntu
 docker_group: docker
-github_repo: 'https://github.com/ankitjain28may/drupal-best-practices.git'
+github_repo: 'https://github.com/dbjpanda/drupal-devops.git'
 staging_branch: 'develop'
 env_file: 'develop'
 backup_dir: '/var/www'

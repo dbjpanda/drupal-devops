@@ -39,8 +39,8 @@ NEW_FILE="${DB_PATH%*.sql}"-$CURRENT_DATE_TIME.sql
 # Export the Configuration
 if [ $EXPORT_CONFIG_ON_COMMIT = true ]; then
     echo "Exporting the Configuration"
-    docker exec drupal composer drupal config:export
-    git add drupal/config/sync
+    docker exec php composer drupal config:export
+    git add www/drupal/config/sync
 fi
 
 # Save previous dump
@@ -53,6 +53,6 @@ fi
 # Export the Database dump
 if [ $EXPORT_DB_DUMP_ON_COMMIT = true ]; then
     echo "Exporting Database Dump"
-    docker exec drupaldb mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD $MYSQL_DATABASE  > $DB_PATH
+    docker exec mariadb mysqldump --user=$MYSQL_USER --password=$MYSQL_PASSWORD $MYSQL_DATABASE  > $DB_PATH
     git add $DB_PATH
 fi
