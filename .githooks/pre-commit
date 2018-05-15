@@ -40,7 +40,7 @@ NEW_FILE="${DB_PATH%*.sql}"-$CURRENT_DATE_TIME.sql
 if [ $EXPORT_CONFIG_ON_COMMIT = true ]; then
     echo "Exporting the Configuration"
     docker exec drupal composer drupal config:export
-    git add drupal/config/sync
+    git add www/drupal/config/sync
 fi
 
 # Save previous dump
