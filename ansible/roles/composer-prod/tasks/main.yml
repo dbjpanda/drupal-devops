@@ -14,5 +14,5 @@
   async: 1000
   poll: 10
   args:
-    chdir: "{{project_dir}}/{{project_folder_name}}/www/drupal/vendor"
+    chdir: "{{project_dir}}/{{project_folder_name}}/www/drupal"
 
