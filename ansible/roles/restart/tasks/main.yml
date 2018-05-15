@@ -1,4 +1,15 @@
 ---
 
-- name: Restarting Drupal Container
-  command: docker restart drupal
+- name: Deleting mariadb container
+  command: docker rm mariadb -f
+  ignore_errors: yes
+
+- name: Recreating mariadb container
+  command: docker-compose up -d mariadb
+  async: 1000
+  poll: 10
+  args:
+    chdir: "{{project_dir}}/{{project_folder_name}}"
+
+- name: Restarting php nginx Container
+  command: docker restart php nginx

@@ -1,7 +1,7 @@
 ---
 
 - name: Deleting previous containers if found
-  command: docker rm drupal drupaldb -f
+  command: docker rm nginx mariadb php -f
   ignore_errors: yes
 
 - name: Starting Docker Sync
