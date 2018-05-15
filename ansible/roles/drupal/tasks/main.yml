@@ -1,7 +1,7 @@
 ---
 
 - name: Importing Configuration
-  command: docker exec drupal composer drupal ci
+  command: docker exec php composer drupal ci
 
 - name: Rebuilding Cache
-  command: docker exec drupal composer drupal cr
+  command: docker exec php composer drupal cr

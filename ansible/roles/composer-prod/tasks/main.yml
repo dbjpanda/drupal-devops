@@ -9,8 +9,8 @@
     {{project_dir}}/{{project_folder_name}}/www/drupal/vendor
   when: vendor_stat.stat.exists
 
-- name: Install Composer without dependencies
-  command: docker exec drupal composer install --no-dev
+- name: Installing Composer without dependencies
+  command: docker exec php composer install --no-dev
   async: 1000
   poll: 10
   args:

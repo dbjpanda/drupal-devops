@@ -10,7 +10,7 @@
   when: vendor_stat.stat.exists
 
 - name: Installing Composer with dependencies
-  command: docker exec drupal composer install
+  command: docker exec php composer install
   async: 1000
   poll: 10
   args:
