@@ -1,6 +1,6 @@
 # Drupal Best Practices
 
-[![Build Status](https://travis-ci.com/dbjpanda/drupal-devops.svg?branch=master)](https://travis-ci.com/dbjpanda/drupal-devops)
+[![Build Status](https://travis-ci.org/dbjpanda/drupal-devops.svg?branch=master)](https://travis-ci.org/dbjpanda/drupal-devops)
 
 This project template provides a starter kit for managing Drupal Workflow using [Ansible](https://www.ansible.com/), [Docker](https://docker.com/), [Git](https://git-scm.com/) and [Composer](https://getcomposer.org/)
 
